@@ -1,0 +1,26 @@
+{
+  "name": "Week7Movies",
+  "version": "1.0.0",
+  "description": "Movies application that stores both actors and movies.",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongodb": "^4.1.1",
+    "mongoose": "^6.0.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shic0004/Week7Movies.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shic0004/Week7Movies/issues"
+  },
+  "homepage": "https://github.com/shic0004/Week7Movies#readme"
+}
