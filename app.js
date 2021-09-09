@@ -7,7 +7,7 @@ const app = express();
 app.listen(8080);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-mongoose.connect('mongodb://localhost:27017/Week7_movies', function (err) { //change database from movies to Week7_movies
+mongoose.connect('mongodb://34.129.14.178:27017/Week7_movies', function (err) { //change database from movies to Week7_movies
     if (err) {
         return console.log('Mongoose - connection error:', err);
     }
