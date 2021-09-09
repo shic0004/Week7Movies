@@ -20,14 +20,32 @@ app.post('/actors', actors.createOne);
 app.get('/actors/:id', actors.getOne);
 app.put('/actors/:id', actors.updateOne);
 app.post('/actors/:id/movies', actors.addMovie);
-
-
 app.delete('/actors/:id', actors.deleteOne);
+
 //Movie RESTFul  endpoints
 app.get('/movies', movies.getAll);
 app.post('/movies', movies.createOne);
 app.get('/movies/:id', movies.getOne);
 app.put('/movies/:id', movies.updateOne);
 
-//Additions 
-//Delete movie by ID
+//My Additions 
+//Question 1 - DONE
+app.delete('/movies/:id', movies.deleteOne);
+
+//Question 2 - DONE
+app.delete('/actors/movies/:id', actors.deleteOneAndMovies);
+
+//Question 3 - 
+app.put('/actors/:idA/:idM', actors.deleteActorMovies);
+
+
+
+ //Question 6 - DONE
+app.get('/movies/:year1/:year2', movies.getMovieWithinYears);
+//Question 7 
+app.delete('/movies', movies.deleteMovieWithinYears);
+
+
+
+
+

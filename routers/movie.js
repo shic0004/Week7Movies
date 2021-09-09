@@ -3,7 +3,7 @@ var Movie = require('../models/movie');
 const mongoose = require('mongoose');
 module.exports = {
     getAll: function (req, res) {
-        Movie.find(function (err, movies) {
+        Movie.find({}).populate('actors').exec(function (err, movies) {
             if (err) return res.status(400).json(err);
             res.json(movies);
         });
@@ -38,4 +38,22 @@ module.exports = {
             res.json();
         });
     },
+
+    //Question 6 - DONE
+    getMovieWithinYears: function (req, res) {
+        let query = { year: { $gte: req.params.year1, $lte: req.params.year2 } }
+        Movie.find(query, function (err, movies) {
+            if (err) return res.status(400).json(err);
+            res.json(movies);
+        });
+    },
+    
+    deleteMovieWithinYears: function (req, res) {
+        let movieDetails = req.body;
+        let query = { year: { $gte: movieDetails.year1, $lte: movieDetails.year2 } };
+        Movie.deleteMany(query, function (err, movies) {
+            if (err) return res.status(400).json(err);
+            res.json(movies);
+        });
+    }
 };

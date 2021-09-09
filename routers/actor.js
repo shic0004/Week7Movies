@@ -1,14 +1,15 @@
 const mongoose = require('mongoose');
+const actor = require('../models/actor');
 const Actor = require('../models/actor');
 const Movie = require('../models/movie');
 
 module.exports = {
     getAll: function (req, res) {
-        Actor.find(function (err, actors) {
+        Actor.find({}).populate('movies').exec(function (err, actor) {
             if (err) {
                 return res.status(404).json(err);
             } else {
-                res.json(actors);
+                res.json(actor);
             }
         });
     },
@@ -26,6 +27,13 @@ module.exports = {
             .exec(function (err, actor) {
                 if (err) return res.status(400).json(err);
                 if (!actor) return res.status(404).json();
+                //console.log(actor.movies);
+                console.log(actor.movies[0])
+
+                console.log(actor.__v);
+                console.log(actor.movies[0]._id);
+
+
                 res.json(actor);
             });
     },
@@ -56,5 +64,39 @@ module.exports = {
                 });
             })
         });
-    }
+    },
+    deleteOneAndMovies: function (req, res) {
+        Actor.findOneAndDelete({ _id: req.params.id })
+            .populate('movies')
+            .exec(function (err, actor) {
+                if (err) return res.status(400).json(err);
+                if (!actor) return res.status(404).json();
+                res.json(actor);
+                for (let i = 0; i < actor.__v; i++) {
+                    Movie.findOneAndDelete({ _id: actor.movies[i]._id }, function (err, movie) {
+                        if (err) return res.status(400).json(err);
+                        if (!movie) return res.status(404).json();
+                        console.log(actor.movies[i]._id);
+                    })
+                }
+            });
+    },
+    deleteActorMovies: function (req, res) {
+        Actor.findOne({ _id: req.params.idA })
+            .populate('movies')
+            .exec(function (err, actor) {
+                if (err) return res.status(400).json(err);
+                if (!actor) return res.status(404).json();
+                res.json(actor);
+
+                
+                Movie.findOne({ _id: req.params.idM }, function (err, movie) {
+                    if (err) return res.status(400).json(err);
+                    if (!movie) return res.status(404).json();
+                    actor.movies.splice(1);
+                    
+                })
+          
+            });
+    },
 };
