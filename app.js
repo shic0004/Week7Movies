@@ -32,17 +32,26 @@ app.put('/movies/:id', movies.updateOne);
 //Question 1 - DONE
 app.delete('/movies/:id', movies.deleteOne);
 
-//Question 2 - DONE
+//Question 2 - DONE?
 app.delete('/actors/movies/:id', actors.deleteOneAndMovies);
 
-//Question 3 - 
-app.put('/actors/:idA/:idM', actors.deleteActorMovies);
+//Question 3 - NOT WORKING
+app.delete('/actors/:idA/:idM', actors.deleteActorMovies);
 
+
+//Quesiton 4 - NOT WORKING 
+
+//Question 5
+app.post('/movies/:id/actors', movies.addActor);
 
 
  //Question 6 - DONE
 app.get('/movies/:year1/:year2', movies.getMovieWithinYears);
-//Question 7 
+
+//Question 7 - DONE (changed getAll actors)
+//Question 8 - DONE (changed getAll movies)
+
+//Question 9 - DONE 
 app.delete('/movies', movies.deleteMovieWithinYears);
 
 

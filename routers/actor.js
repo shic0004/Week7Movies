@@ -27,13 +27,6 @@ module.exports = {
             .exec(function (err, actor) {
                 if (err) return res.status(400).json(err);
                 if (!actor) return res.status(404).json();
-                //console.log(actor.movies);
-                console.log(actor.movies[0])
-
-                console.log(actor.__v);
-                console.log(actor.movies[0]._id);
-
-
                 res.json(actor);
             });
     },
@@ -81,22 +74,22 @@ module.exports = {
                 }
             });
     },
-    deleteActorMovies: function (req, res) {
-        Actor.findOne({ _id: req.params.idA })
-            .populate('movies')
-            .exec(function (err, actor) {
-                if (err) return res.status(400).json(err);
-                if (!actor) return res.status(404).json();
-                res.json(actor);
-
-                
-                Movie.findOne({ _id: req.params.idM }, function (err, movie) {
-                    if (err) return res.status(400).json(err);
-                    if (!movie) return res.status(404).json();
-                    actor.movies.splice(1);
-                    
-                })
-          
-            });
-    },
+    // deleteActorMovies: function (req, res) {
+    //     Actor.findOne({ _id: req.params.idA }, function (err, actor) {
+    //         if (err) return res.status(400).json(err);
+    //         if (!actor) return res.status(404).json();
+         
+    //             console.log(actor.movies.length());
+    
+    //             // for (let i = 0; i > actor.movies.length();i++){
+    //             //     if (actor.movies[i].id == req.params.idM) {
+    //             //         actor.movies.splice(i, 1);
+    //             //     }
+    //             // }
+    //             actor.save(function (err) {
+    //                 if (err) return res.status(500).json(err);
+    //                 res.json(actor);
+    //             });
+    //         })
+    // }
 };
